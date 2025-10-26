@@ -1,0 +1,1524 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Alex | zAlexxx__ - Desarrollador Fullstack</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #6366f1;
+            --primary-dark: #4f46e5;
+            --secondary: #10b981;
+            --secondary-dark: #059669;
+            --accent: #8b5cf6;
+            --accent-dark: #7c3aed;
+            --neon: #00ff88;
+            --neon-dark: #00cc6a;
+            --dark: #0f0f1f;
+            --darker: #070711;
+            --light: #f8fafc;
+            --gray: #94a3b8;
+            --transition: all 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            background: linear-gradient(135deg, var(--darker) 0%, var(--dark) 50%, #1a1a2e 100%);
+            color: var(--light);
+            line-height: 1.6;
+            overflow-x: hidden;
+            min-height: 100vh;
+        }
+
+        /* Animated Background */
+        .animated-bg {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -2;
+            background: 
+                radial-gradient(circle at 20% 80%, rgba(99, 102, 241, 0.2) 0%, transparent 50%),
+                radial-gradient(circle at 80% 20%, rgba(139, 92, 246, 0.2) 0%, transparent 50%),
+                radial-gradient(circle at 40% 40%, rgba(16, 185, 129, 0.15) 0%, transparent 50%);
+            animation: bgPulse 8s ease-in-out infinite;
+        }
+
+        @keyframes bgPulse {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.8; }
+        }
+
+        .floating-shapes {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            pointer-events: none;
+        }
+
+        .shape {
+            position: absolute;
+            background: linear-gradient(45deg, var(--primary), var(--accent));
+            border-radius: 50%;
+            filter: blur(40px);
+            opacity: 0.1;
+            animation: floatShape 20s linear infinite;
+        }
+
+        .shape:nth-child(1) {
+            width: 300px;
+            height: 300px;
+            top: 10%;
+            left: 5%;
+            animation-delay: 0s;
+        }
+
+        .shape:nth-child(2) {
+            width: 200px;
+            height: 200px;
+            top: 60%;
+            right: 10%;
+            animation-delay: -5s;
+            background: linear-gradient(45deg, var(--secondary), var(--neon));
+        }
+
+        .shape:nth-child(3) {
+            width: 250px;
+            height: 250px;
+            bottom: 20%;
+            left: 20%;
+            animation-delay: -10s;
+            background: linear-gradient(45deg, var(--accent), var(--primary));
+        }
+
+        @keyframes floatShape {
+            0%, 100% {
+                transform: translate(0, 0) rotate(0deg);
+            }
+            25% {
+                transform: translate(100px, -50px) rotate(90deg);
+            }
+            50% {
+                transform: translate(50px, 100px) rotate(180deg);
+            }
+            75% {
+                transform: translate(-100px, 50px) rotate(270deg);
+            }
+        }
+
+        /* Falling Particles */
+        .falling-particles {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            pointer-events: none;
+        }
+
+        .particle {
+            position: absolute;
+            width: 4px;
+            height: 4px;
+            background: var(--neon);
+            border-radius: 50%;
+            opacity: 0.7;
+            animation: fall linear infinite;
+        }
+
+        @keyframes fall {
+            0% {
+                transform: translateY(-100px) rotate(0deg);
+                opacity: 0;
+            }
+            10% {
+                opacity: 1;
+            }
+            90% {
+                opacity: 1;
+            }
+            100% {
+                transform: translateY(100vh) rotate(360deg);
+                opacity: 0;
+            }
+        }
+
+        /* Floating Code Elements */
+        .floating-code {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            pointer-events: none;
+        }
+
+        .code-element {
+            position: absolute;
+            color: rgba(255, 255, 255, 0.1);
+            font-size: 1.5rem;
+            font-family: monospace;
+            animation: floatCode 20s linear infinite;
+        }
+
+        @keyframes floatCode {
+            0% {
+                transform: translateY(100vh) rotate(0deg);
+                opacity: 0;
+            }
+            10% {
+                opacity: 0.2;
+            }
+            90% {
+                opacity: 0.2;
+            }
+            100% {
+                transform: translateY(-100px) rotate(360deg);
+                opacity: 0;
+            }
+        }
+
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Header & Navigation */
+        header {
+            background: rgba(15, 15, 31, 0.8);
+            backdrop-filter: blur(20px);
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            transition: var(--transition);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        header.scrolled {
+            padding: 10px 0;
+            background: rgba(15, 15, 31, 0.95);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+        }
+
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 0;
+        }
+
+        .logo {
+            font-size: 2rem;
+            font-weight: 900;
+            background: linear-gradient(135deg, var(--neon), var(--primary));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            text-decoration: none;
+            position: relative;
+            text-shadow: 0 0 20px rgba(0, 255, 136, 0.3);
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 3rem;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: var(--light);
+            font-weight: 600;
+            transition: var(--transition);
+            position: relative;
+            padding: 10px 0;
+        }
+
+        .nav-links a::before {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 3px;
+            bottom: 0;
+            left: 0;
+            background: linear-gradient(135deg, var(--neon), var(--primary));
+            transition: var(--transition);
+            border-radius: 2px;
+        }
+
+        .nav-links a:hover::before {
+            width: 100%;
+        }
+
+        .nav-links a:hover {
+            color: var(--neon);
+            text-shadow: 0 0 10px rgba(0, 255, 136, 0.5);
+        }
+
+        .hamburger {
+            display: none;
+            cursor: pointer;
+            font-size: 1.5rem;
+            color: var(--light);
+        }
+
+        /* Hero Section */
+        .hero {
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero-content {
+            max-width: 800px;
+            z-index: 2;
+            position: relative;
+        }
+
+        .hero h1 {
+            font-size: 5rem;
+            margin-bottom: 1rem;
+            line-height: 1.1;
+            background: linear-gradient(135deg, var(--neon), var(--primary), var(--accent));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            animation: textGlow 3s ease-in-out infinite alternate;
+            text-shadow: 0 0 30px rgba(99, 102, 241, 0.5);
+        }
+
+        @keyframes textGlow {
+            from {
+                text-shadow: 0 0 20px rgba(99, 102, 241, 0.5),
+                             0 0 40px rgba(139, 92, 246, 0.3);
+            }
+            to {
+                text-shadow: 0 0 30px rgba(99, 102, 241, 0.8),
+                             0 0 60px rgba(139, 92, 246, 0.5),
+                             0 0 80px rgba(0, 255, 136, 0.3);
+            }
+        }
+
+        .hero p {
+            font-size: 1.5rem;
+            color: var(--gray);
+            margin-bottom: 3rem;
+            animation: slideUp 1s ease 0.5s both;
+        }
+
+        .nickname {
+            color: var(--neon);
+            font-weight: 800;
+            font-size: 1.8rem;
+            text-shadow: 0 0 15px rgba(0, 255, 136, 0.5);
+        }
+
+        .typing-text {
+            font-size: 1.8rem;
+            margin-bottom: 3rem;
+            min-height: 2.5rem;
+            font-weight: 600;
+            color: var(--neon);
+        }
+
+        .cursor {
+            display: inline-block;
+            background: linear-gradient(var(--neon), var(--primary));
+            margin-left: 0.2rem;
+            width: 4px;
+            animation: blink 0.8s infinite;
+            border-radius: 1px;
+        }
+
+        @keyframes blink {
+            0%, 50% { background: linear-gradient(var(--neon), var(--primary)); }
+            51%, 100% { background: transparent; }
+        }
+
+        /* Epic Icon Grid */
+        .icon-matrix {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 20px;
+            margin: 50px 0;
+        }
+
+        .epic-icon {
+            width: 80px;
+            height: 80px;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: var(--transition);
+            position: relative;
+            overflow: hidden;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+        }
+
+        .epic-icon::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.1), transparent);
+            transition: 0.5s;
+        }
+
+        .epic-icon:hover::before {
+            left: 100%;
+        }
+
+        .epic-icon:hover {
+            transform: translateY(-10px) rotate(5deg);
+            background: linear-gradient(135deg, var(--primary), var(--accent));
+            box-shadow: 0 15px 30px rgba(99, 102, 241, 0.4),
+                        0 0 30px rgba(139, 92, 246, 0.3);
+        }
+
+        .epic-icon i {
+            font-size: 2rem;
+            background: linear-gradient(135deg, var(--light), var(--gray));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            transition: var(--transition);
+        }
+
+        .epic-icon:hover i {
+            background: linear-gradient(135deg, white, white);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 15px;
+            padding: 18px 40px;
+            background: linear-gradient(135deg, var(--primary), var(--accent));
+            color: white;
+            border: none;
+            border-radius: 15px;
+            font-weight: 700;
+            text-decoration: none;
+            transition: var(--transition);
+            cursor: pointer;
+            box-shadow: 0 10px 25px rgba(99, 102, 241, 0.4);
+            position: relative;
+            overflow: hidden;
+            font-size: 1.1rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
+            transition: 0.5s;
+        }
+
+        .btn:hover::before {
+            left: 100%;
+        }
+
+        .btn:hover {
+            transform: translateY(-8px) scale(1.05);
+            box-shadow: 0 20px 40px rgba(99, 102, 241, 0.6),
+                        0 0 30px rgba(139, 92, 246, 0.4);
+        }
+
+        .btn-neon {
+            background: linear-gradient(135deg, var(--neon), var(--secondary));
+            box-shadow: 0 10px 25px rgba(0, 255, 136, 0.4);
+        }
+
+        .btn-neon:hover {
+            box-shadow: 0 20px 40px rgba(0, 255, 136, 0.6),
+                        0 0 30px rgba(16, 185, 129, 0.4);
+        }
+
+        /* About Section */
+        .section {
+            padding: 150px 0;
+            position: relative;
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 100px;
+        }
+
+        .section-title h2 {
+            font-size: 4rem;
+            margin-bottom: 2rem;
+            position: relative;
+            display: inline-block;
+            background: linear-gradient(135deg, var(--neon), var(--primary));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            text-shadow: 0 0 20px rgba(99, 102, 241, 0.3);
+        }
+
+        .section-title h2::after {
+            content: '';
+            position: absolute;
+            width: 200px;
+            height: 6px;
+            background: linear-gradient(to right, var(--neon), var(--primary));
+            bottom: -20px;
+            left: 50%;
+            transform: translateX(-50%);
+            border-radius: 3px;
+            box-shadow: 0 0 15px rgba(0, 255, 136, 0.5);
+        }
+
+        .section-title p {
+            color: var(--gray);
+            max-width: 600px;
+            margin: 0 auto;
+            font-size: 1.3rem;
+            line-height: 1.8;
+        }
+
+        .about-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 80px;
+            align-items: center;
+        }
+
+        .about-text h3 {
+            font-size: 2.5rem;
+            margin-bottom: 2rem;
+            color: var(--light);
+            background: linear-gradient(135deg, var(--light), var(--gray));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .about-text p {
+            margin-bottom: 2rem;
+            color: var(--gray);
+            font-size: 1.2rem;
+            line-height: 1.8;
+        }
+
+        .info-cards {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 25px;
+            margin-top: 40px;
+        }
+
+        .info-card {
+            background: rgba(255, 255, 255, 0.05);
+            padding: 30px;
+            border-radius: 20px;
+            transition: var(--transition);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(15px);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .info-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, rgba(99, 102, 241, 0.1), rgba(139, 92, 246, 0.1));
+            opacity: 0;
+            transition: var(--transition);
+        }
+
+        .info-card:hover::before {
+            opacity: 1;
+        }
+
+        .info-card:hover {
+            transform: translateY(-15px) scale(1.02);
+            border-color: var(--primary);
+            box-shadow: 0 20px 40px rgba(99, 102, 241, 0.3);
+        }
+
+        .info-card h4 {
+            font-size: 1.5rem;
+            margin-bottom: 15px;
+            color: var(--light);
+            position: relative;
+        }
+
+        .info-card p {
+            color: var(--gray);
+            font-size: 1rem;
+            position: relative;
+            line-height: 1.6;
+        }
+
+        /* Stats Section */
+        .stats {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 30px;
+            margin-top: 80px;
+        }
+
+        .stat-card {
+            text-align: center;
+            padding: 40px 30px;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 20px;
+            transition: var(--transition);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .stat-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, rgba(99, 102, 241, 0.1), transparent);
+            opacity: 0;
+            transition: var(--transition);
+        }
+
+        .stat-card:hover::before {
+            opacity: 1;
+        }
+
+        .stat-card:hover {
+            transform: translateY(-10px);
+            border-color: var(--neon);
+            box-shadow: 0 20px 40px rgba(0, 255, 136, 0.2);
+        }
+
+        .stat-number {
+            font-size: 3.5rem;
+            font-weight: 900;
+            background: linear-gradient(135deg, var(--neon), var(--primary));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 15px;
+            text-shadow: 0 0 20px rgba(99, 102, 241, 0.3);
+        }
+
+        .stat-text {
+            color: var(--gray);
+            font-size: 1.1rem;
+            font-weight: 600;
+        }
+
+        /* Projects Section */
+        .projects {
+            background: rgba(255, 255, 255, 0.02);
+            border-radius: 50px;
+            margin: 50px 0;
+            border: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+            gap: 40px;
+        }
+
+        .project-card {
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 25px;
+            overflow: hidden;
+            transition: var(--transition);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(15px);
+            position: relative;
+        }
+
+        .project-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, rgba(99, 102, 241, 0.1), rgba(139, 92, 246, 0.1));
+            opacity: 0;
+            transition: var(--transition);
+        }
+
+        .project-card:hover::before {
+            opacity: 1;
+        }
+
+        .project-card:hover {
+            transform: translateY(-20px) scale(1.02);
+            border-color: var(--primary);
+            box-shadow: 0 30px 60px rgba(99, 102, 241, 0.4),
+                        0 0 40px rgba(139, 92, 246, 0.3);
+        }
+
+        .project-img {
+            height: 250px;
+            background: linear-gradient(135deg, var(--primary) 0%, var(--accent) 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 4rem;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .project-img::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(45deg, transparent, rgba(255,255,255,0.2), transparent);
+            transform: translateX(-100%);
+        }
+
+        .project-card:hover .project-img::after {
+            animation: shineOverlay 1.5s;
+        }
+
+        @keyframes shineOverlay {
+            0% { transform: translateX(-100%); }
+            100% { transform: translateX(100%); }
+        }
+
+        .project-content {
+            padding: 30px;
+            position: relative;
+        }
+
+        .project-content h3 {
+            font-size: 1.8rem;
+            margin-bottom: 20px;
+            color: var(--light);
+            background: linear-gradient(135deg, var(--light), var(--gray));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .project-content p {
+            color: var(--gray);
+            margin-bottom: 25px;
+            font-size: 1.1rem;
+            line-height: 1.7;
+        }
+
+        /* Contact Section */
+        .contact-content {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 80px;
+            text-align: center;
+        }
+
+        .contact-info {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 40px;
+        }
+
+        .contact-item {
+            padding: 40px 30px;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 20px;
+            transition: var(--transition);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(15px);
+        }
+
+        .contact-item:hover {
+            transform: translateY(-10px);
+            border-color: var(--neon);
+            box-shadow: 0 20px 40px rgba(0, 255, 136, 0.2);
+        }
+
+        .contact-icon {
+            background: linear-gradient(135deg, var(--neon), var(--primary));
+            color: white;
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2rem;
+            margin: 0 auto 20px;
+            box-shadow: 0 10px 25px rgba(0, 255, 136, 0.3);
+        }
+
+        .contact-details h3 {
+            font-size: 1.5rem;
+            margin-bottom: 15px;
+            color: var(--light);
+        }
+
+        .contact-details p {
+            color: var(--gray);
+            font-size: 1.1rem;
+        }
+
+        .social-links {
+            display: flex;
+            justify-content: center;
+            gap: 25px;
+            margin-top: 50px;
+        }
+
+        .social-link {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 70px;
+            height: 70px;
+            background: rgba(255, 255, 255, 0.1);
+            color: var(--light);
+            border-radius: 50%;
+            transition: var(--transition);
+            text-decoration: none;
+            font-size: 1.8rem;
+            position: relative;
+            overflow: hidden;
+            border: 2px solid transparent;
+        }
+
+        .social-link::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
+            transition: 0.5s;
+        }
+
+        .social-link:hover::before {
+            left: 100%;
+        }
+
+        .social-link:hover {
+            background: linear-gradient(135deg, var(--neon), var(--primary));
+            color: white;
+            transform: translateY(-10px) scale(1.1);
+            border-color: var(--neon);
+            box-shadow: 0 15px 30px rgba(0, 255, 136, 0.4);
+        }
+
+        /* Footer */
+        footer {
+            background: rgba(7, 7, 17, 0.95);
+            padding: 80px 0 30px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(20px);
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr;
+            gap: 50px;
+            margin-bottom: 50px;
+        }
+
+        .footer-about h3 {
+            font-size: 2.2rem;
+            margin-bottom: 25px;
+            background: linear-gradient(135deg, var(--neon), var(--primary));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            text-shadow: 0 0 20px rgba(0, 255, 136, 0.3);
+        }
+
+        .footer-about p {
+            color: var(--gray);
+            margin-bottom: 25px;
+            font-size: 1.1rem;
+            line-height: 1.7;
+        }
+
+        .footer-links h4, .footer-contact h4 {
+            font-size: 1.5rem;
+            margin-bottom: 25px;
+            color: var(--light);
+        }
+
+        .footer-links ul {
+            list-style: none;
+        }
+
+        .footer-links li {
+            margin-bottom: 15px;
+        }
+
+        .footer-links a {
+            color: var(--gray);
+            text-decoration: none;
+            transition: var(--transition);
+            display: inline-block;
+            font-size: 1.1rem;
+        }
+
+        .footer-links a:hover {
+            color: var(--neon);
+            transform: translateX(10px);
+            text-shadow: 0 0 10px rgba(0, 255, 136, 0.5);
+        }
+
+        .footer-contact p {
+            color: var(--gray);
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            font-size: 1.1rem;
+        }
+
+        .footer-bottom {
+            text-align: center;
+            padding-top: 40px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            color: var(--gray);
+            font-size: 1rem;
+        }
+
+        /* Animations */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(50px) scale(0.9);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0) scale(1);
+            }
+        }
+
+        .fade-in {
+            animation: fadeInUp 1s ease forwards;
+        }
+
+        .delay-1 { animation-delay: 0.2s; }
+        .delay-2 { animation-delay: 0.4s; }
+        .delay-3 { animation-delay: 0.6s; }
+
+        /* Scrollbar */
+        ::-webkit-scrollbar {
+            width: 12px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: var(--darker);
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: linear-gradient(var(--neon), var(--primary));
+            border-radius: 6px;
+            border: 2px solid var(--darker);
+        }
+
+        ::-webkit-scrollbar-thumb:hover {
+            background: linear-gradient(var(--primary), var(--accent));
+        }
+
+        /* Responsive Design */
+        @media (max-width: 1200px) {
+            .hero h1 {
+                font-size: 4rem;
+            }
+            .section-title h2 {
+                font-size: 3.5rem;
+            }
+        }
+
+        @media (max-width: 992px) {
+            .about-content {
+                grid-template-columns: 1fr;
+            }
+            .hero h1 {
+                font-size: 3.5rem;
+            }
+            .footer-content {
+                grid-template-columns: 1fr 1fr;
+            }
+            .stats {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            .icon-matrix {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (max-width: 768px) {
+            .hamburger {
+                display: block;
+            }
+            .nav-links {
+                position: fixed;
+                top: 80px;
+                right: -100%;
+                width: 80%;
+                height: calc(100vh - 80px);
+                background: rgba(15, 15, 31, 0.98);
+                flex-direction: column;
+                align-items: center;
+                padding-top: 80px;
+                transition: var(--transition);
+                border-left: 1px solid rgba(255, 255, 255, 0.1);
+                backdrop-filter: blur(20px);
+            }
+            .nav-links.active {
+                right: 0;
+            }
+            .nav-links li {
+                margin: 25px 0;
+            }
+            .hero h1 {
+                font-size: 3rem;
+            }
+            .section-title h2 {
+                font-size: 3rem;
+            }
+            .info-cards {
+                grid-template-columns: 1fr;
+            }
+            .footer-content {
+                grid-template-columns: 1fr;
+            }
+            .stats {
+                grid-template-columns: 1fr;
+            }
+            .projects-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media (max-width: 576px) {
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+            .section {
+                padding: 100px 0;
+            }
+            .section-title h2 {
+                font-size: 2.5rem;
+            }
+            .icon-matrix {
+                grid-template-columns: 1fr;
+            }
+            .btn {
+                padding: 15px 30px;
+                font-size: 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Animated Background -->
+    <div class="animated-bg"></div>
+    <div class="floating-shapes">
+        <div class="shape"></div>
+        <div class="shape"></div>
+        <div class="shape"></div>
+    </div>
+    
+    <!-- Falling Particles -->
+    <div class="falling-particles" id="particles"></div>
+    
+    <!-- Floating Code Elements -->
+    <div class="floating-code" id="floating-code"></div>
+
+    <!-- Header & Navigation -->
+    <header id="header">
+        <div class="container">
+            <nav>
+                <a href="#" class="logo">ALEX<span style="color: var(--neon)">.</span></a>
+                <ul class="nav-links">
+                    <li><a href="#home">INICIO</a></li>
+                    <li><a href="#about">SOBRE MÍ</a></li>
+                    <li><a href="#projects">PROYECTOS</a></li>
+                    <li><a href="#contact">CONTACTO</a></li>
+                </ul>
+                <div class="hamburger">
+                    <i class="fas fa-bars"></i>
+                </div>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero" id="home">
+        <div class="container">
+            <div class="hero-content fade-in">
+                <h1>ALEX <span class="nickname">zAlexxx__</span></h1>
+                <div class="typing-text">
+                    <span id="typed-text"></span><span class="cursor"></span>
+                </div>
+                <p>CREADOR DE EXPERIENCIAS DIGITALES ÉPICAS</p>
+                
+                <div class="icon-matrix">
+                    <div class="epic-icon">
+                        <i class="fas fa-code"></i>
+                    </div>
+                    <div class="epic-icon">
+                        <i class="fas fa-gamepad"></i>
+                    </div>
+                    <div class="epic-icon">
+                        <i class="fas fa-rocket"></i>
+                    </div>
+                    <div class="epic-icon">
+                        <i class="fas fa-bolt"></i>
+                    </div>
+                    <div class="epic-icon">
+                        <i class="fas fa-shield-alt"></i>
+                    </div>
+                    <div class="epic-icon">
+                        <i class="fas fa-magic"></i>
+                    </div>
+                    <div class="epic-icon">
+                        <i class="fas fa-infinity"></i>
+                    </div>
+                    <div class="epic-icon">
+                        <i class="fas fa-fire"></i>
+                    </div>
+                </div>
+
+                <div class="hero-buttons">
+                    <a href="#projects" class="btn btn-neon">
+                        <i class="fas fa-rocket"></i> EXPLORAR PROYECTOS
+                    </a>
+                    <a href="#contact" class="btn">
+                        <i class="fas fa-paper-plane"></i> CONECTAR
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section class="section" id="about">
+        <div class="container">
+            <div class="section-title fade-in">
+                <h2>SOBRE MÍ</h2>
+                <p>Un desarrollador apasionado que transforma ideas en realidades digitales extraordinarias</p>
+            </div>
+            <div class="about-content">
+                <div class="about-text fade-in">
+                    <h3>🚀 EL ARTE DEL CÓDIGO</h3>
+                    <p>Donde la creatividad se encuentra con la tecnología. Con cada línea de código, busco no solo resolver problemas, sino crear experiencias memorables que inspiren y asombren.</p>
+                    
+                    <p>Mi viaje en el desarrollo es una búsqueda constante de la excelencia. Me encanta explorar los límites de lo posible, combinando diseño innovador con arquitecturas robustas para construir el futuro digital.</p>
+                    
+                    <div class="info-cards">
+                        <div class="info-card fade-in delay-1">
+                            <h4>💫 INNOVACIÓN CONSTANTE</h4>
+                            <p>Explorando las últimas tecnologías y frameworks para crear soluciones que marquen la diferencia en el mundo digital.</p>
+                        </div>
+                        <div class="info-card fade-in delay-2">
+                            <h4>🛡️ COMUNIDAD NAUTICMC</h4>
+                            <p>Contribuyendo al ecosistema de NauticMC, ayudando a crear experiencias únicas para una comunidad apasionada.</p>
+                        </div>
+                    </div>
+
+                    <div class="stats">
+                        <div class="stat-card fade-in">
+                            <div class="stat-number">1.5</div>
+                            <div class="stat-text">Años de Experiencia</div>
+                        </div>
+                        <div class="stat-card fade-in delay-1">
+                            <div class="stat-number">5+</div>
+                            <div class="stat-text">Proyectos Épicos</div>
+                        </div>
+                        <div class="stat-card fade-in delay-2">
+                            <div class="stat-number">100%</div>
+                            <div class="stat-text">Compromiso</div>
+                        </div>
+                        <div class="stat-card fade-in delay-3">
+                            <div class="stat-number">∞</div>
+                            <div class="stat-text">Creatividad</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Projects Section -->
+    <section class="section projects" id="projects">
+        <div class="container">
+            <div class="section-title fade-in">
+                <h2>PROYECTOS ÉPICOS</h2>
+                <p>Donde las ideas se convierten en experiencias digitales inolvidables</p>
+            </div>
+            <div class="projects-grid">
+                <div class="project-card fade-in">
+                    <div class="project-img">
+                        <i class="fas fa-shield-alt"></i>
+                    </div>
+                    <div class="project-content">
+                        <h3>NAUTICMC EXPERIENCE</h3>
+                        <p>Un viaje al corazón de una de las comunidades más vibrantes de Minecraft. Contribuciones que mejoran la experiencia de miles de jugadores diariamente.</p>
+                        <div class="project-tags">
+                            <span class="project-tag">Comunidad</span>
+                            <span class="project-tag">Experiencia</span>
+                            <span class="project-tag">Innovación</span>
+                        </div>
+                        <div class="project-links">
+                            <a href="https://web.nauticmc.net" class="btn btn-neon" target="_blank">
+                                <i class="fas fa-external-link-alt"></i> EXPLORAR
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="project-card fade-in delay-1">
+                    <div class="project-img">
+                        <i class="fas fa-laptop-code"></i>
+                    </div>
+                    <div class="project-content">
+                        <h3>REALIDADES DIGITALES</h3>
+                        <p>Creación de aplicaciones web que desafían lo convencional. Interfaces intuitivas, arquitecturas escalables y experiencias de usuario que cautivan.</p>
+                        <div class="project-tags">
+                            <span class="project-tag">Next.JS</span>
+                            <span class="project-tag">C# .NET</span>
+                            <span class="project-tag">Innovación</span>
+                        </div>
+                        <div class="project-links">
+                            <a href="#" class="btn">
+                                <i class="fab fa-github"></i> DESCUBRIR
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="project-card fade-in delay-2">
+                    <div class="project-img">
+                        <i class="fas fa-bolt"></i>
+                    </div>
+                    <div class="project-content">
+                        <h3>FUTURO TECNOLÓGICO</h3>
+                        <p>Explorando las fronteras del desarrollo moderno. Sistemas de alto rendimiento, arquitecturas cloud-first y soluciones que definen el mañana.</p>
+                        <div class="project-tags">
+                            <span class="project-tag">Vanguardia</span>
+                            <span class="project-tag">Cloud</span>
+                            <span class="project-tag">Escalabilidad</span>
+                        </div>
+                        <div class="project-links">
+                            <a href="#" class="btn">
+                                <i class="fas fa-external-link-alt"></i> VISIÓN
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section class="section" id="contact">
+        <div class="container">
+            <div class="section-title fade-in">
+                <h2>CONECTA CONMIGO</h2>
+                <p>¿Listo para crear algo extraordinario juntos?</p>
+            </div>
+            <div class="contact-content">
+                <div class="contact-info fade-in">
+                    <div class="contact-item">
+                        <div class="contact-icon">
+                            <i class="fas fa-envelope"></i>
+                        </div>
+                        <div class="contact-details">
+                            <h3>EMAIL</h3>
+                            <p>zalexxstaff@gmail.com</p>
+                        </div>
+                    </div>
+                    
+                    <div class="contact-item">
+                        <div class="contact-icon">
+                            <i class="fab fa-discord"></i>
+                        </div>
+                        <div class="contact-details">
+                            <h3>DISCORD</h3>
+                            <p>zAlexxx__</p>
+                        </div>
+                    </div>
+                    
+                    <div class="contact-item">
+                        <div class="contact-icon">
+                            <i class="fas fa-map-marker-alt"></i>
+                        </div>
+                        <div class="contact-details">
+                            <h3>UBICACIÓN</h3>
+                            <p>Rumania</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="social-links">
+                    <a href="mailto:zalexxstaff@gmail.com" class="social-link">
+                        <i class="fas fa-envelope"></i>
+                    </a>
+                    <a href="#" class="social-link">
+                        <i class="fab fa-github"></i>
+                    </a>
+                    <a href="#" class="social-link">
+                        <i class="fab fa-discord"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-about">
+                    <h3>ALEX - zAlexxx__</h3>
+                    <p>Transformando visiones en experiencias digitales épicas. Donde cada pixel cuenta una historia y cada línea de código crea magia. El futuro se construye con código, y yo estoy aquí para moldearlo.</p>
+                    <div class="social-links">
+                        <a href="mailto:zalexxstaff@gmail.com" class="social-link">
+                            <i class="fas fa-envelope"></i>
+                        </a>
+                        <a href="#" class="social-link">
+                            <i class="fab fa-github"></i>
+                        </a>
+                        <a href="#" class="social-link">
+                            <i class="fab fa-discord"></i>
+                        </a>
+                    </div>
+                </div>
+                
+                <div class="footer-links">
+                    <h4>EXPLORAR</h4>
+                    <ul>
+                        <li><a href="#home">Inicio</a></li>
+                        <li><a href="#about">Sobre Mí</a></li>
+                        <li><a href="#projects">Proyectos</a></li>
+                        <li><a href="#contact">Contacto</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-contact">
+                    <h4>CONECTA</h4>
+                    <p><i class="fas fa-envelope"></i> zalexxstaff@gmail.com</p>
+                    <p><i class="fab fa-discord"></i> zAlexxx__</p>
+                    <p><i class="fas fa-map-marker-alt"></i> Rumania</p>
+                </div>
+            </div>
+            
+            <div class="footer-bottom">
+                <p>&copy; 2023 ALEX - zAlexxx__. CREADO CON ⚡ Y PASIÓN INFINITA</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Header scroll effect
+        window.addEventListener('scroll', function() {
+            const header = document.getElementById('header');
+            if (window.scrollY > 50) {
+                header.classList.add('scrolled');
+            } else {
+                header.classList.remove('scrolled');
+            }
+        });
+
+        // Mobile menu toggle
+        const hamburger = document.querySelector('.hamburger');
+        const navLinks = document.querySelector('.nav-links');
+        
+        hamburger.addEventListener('click', function() {
+            navLinks.classList.toggle('active');
+        });
+
+        // Close mobile menu when clicking on a link
+        document.querySelectorAll('.nav-links a').forEach(link => {
+            link.addEventListener('click', function() {
+                navLinks.classList.remove('active');
+            });
+        });
+
+        // Typing Effect
+        const typedTextSpan = document.getElementById('typed-text');
+        const textArray = [
+            "DESARROLLADOR FULLSTACK", 
+            "CREADOR DE EXPERIENCIAS",
+            "INNOVADOR DIGITAL",
+            "VISIONARIO TECNOLÓGICO",
+            "zAlexxx__"
+        ];
+        const typingDelay = 80;
+        const erasingDelay = 40;
+        const newTextDelay = 1500;
+        let textArrayIndex = 0;
+        let charIndex = 0;
+
+        function type() {
+            if (charIndex < textArray[textArrayIndex].length) {
+                typedTextSpan.textContent += textArray[textArrayIndex].charAt(charIndex);
+                charIndex++;
+                setTimeout(type, typingDelay);
+            } else {
+                setTimeout(erase, newTextDelay);
+            }
+        }
+
+        function erase() {
+            if (charIndex > 0) {
+                typedTextSpan.textContent = textArray[textArrayIndex].substring(0, charIndex-1);
+                charIndex--;
+                setTimeout(erase, erasingDelay);
+            } else {
+                textArrayIndex++;
+                if(textArrayIndex>=textArray.length) textArrayIndex=0;
+                setTimeout(type, typingDelay + 500);
+            }
+        }
+
+        document.addEventListener("DOMContentLoaded", function() {
+            setTimeout(type, newTextDelay + 250);
+        });
+
+        // Animate elements on scroll
+        const fadeElements = document.querySelectorAll('.fade-in');
+        
+        const fadeInOnScroll = () => {
+            fadeElements.forEach(element => {
+                const elementPosition = element.getBoundingClientRect().top;
+                const screenPosition = window.innerHeight / 1.1;
+                
+                if (elementPosition < screenPosition) {
+                    element.style.opacity = '1';
+                    element.style.transform = 'translateY(0) scale(1)';
+                }
+            });
+        };
+        
+        // Set initial state for fade elements
+        fadeElements.forEach(element => {
+            element.style.opacity = '0';
+            element.style.transform = 'translateY(50px) scale(0.9)';
+            element.style.transition = 'opacity 1s ease, transform 1s ease';
+        });
+        
+        window.addEventListener('scroll', fadeInOnScroll);
+        window.addEventListener('load', fadeInOnScroll);
+
+        // Add parallax effect to floating shapes
+        document.addEventListener('mousemove', (e) => {
+            const shapes = document.querySelectorAll('.shape');
+            const mouseX = e.clientX / window.innerWidth;
+            const mouseY = e.clientY / window.innerHeight;
+            
+            shapes.forEach((shape, index) => {
+                const speed = (index + 1) * 0.5;
+                const x = (mouseX * speed * 100) - 50;
+                const y = (mouseY * speed * 100) - 50;
+                
+                shape.style.transform = `translate(${x}px, ${y}px) rotate(${x}deg)`;
+            });
+        });
+
+        // Create falling particles
+        function createParticles() {
+            const particlesContainer = document.getElementById('particles');
+            const particleCount = 50;
+            
+            for (let i = 0; i < particleCount; i++) {
+                const particle = document.createElement('div');
+                particle.classList.add('particle');
+                
+                // Random properties
+                const size = Math.random() * 3 + 1;
+                const left = Math.random() * 100;
+                const duration = Math.random() * 10 + 5;
+                const delay = Math.random() * 5;
+                
+                particle.style.width = `${size}px`;
+                particle.style.height = `${size}px`;
+                particle.style.left = `${left}%`;
+                particle.style.animationDuration = `${duration}s`;
+                particle.style.animationDelay = `${delay}s`;
+                
+                // Random color
+                const colors = ['#00ff88', '#6366f1', '#8b5cf6', '#10b981'];
+                const randomColor = colors[Math.floor(Math.random() * colors.length)];
+                particle.style.background = randomColor;
+                
+                particlesContainer.appendChild(particle);
+            }
+        }
+
+        // Create floating code elements
+        function createFloatingCode() {
+            const codeContainer = document.getElementById('floating-code');
+            const codeElements = ['</>', '{ }', 'div', 'function()', 'const', 'class', 'import', 'export', 'return', 'if()', 'for()'];
+            const elementCount = 15;
+            
+            for (let i = 0; i < elementCount; i++) {
+                const codeElement = document.createElement('div');
+                codeElement.classList.add('code-element');
+                codeElement.textContent = codeElements[Math.floor(Math.random() * codeElements.length)];
+                
+                // Random properties
+                const left = Math.random() * 100;
+                const duration = Math.random() * 20 + 10;
+                const delay = Math.random() * 10;
+                const fontSize = Math.random() * 1 + 1;
+                
+                codeElement.style.left = `${left}%`;
+                codeElement.style.animationDuration = `${duration}s`;
+                codeElement.style.animationDelay = `${delay}s`;
+                codeElement.style.fontSize = `${fontSize}rem`;
+                
+                codeContainer.appendChild(codeElement);
+            }
+        }
+        
+        // Initialize effects
+        createParticles();
+        createFloatingCode();
+    </script>
+</body>
+</html>
